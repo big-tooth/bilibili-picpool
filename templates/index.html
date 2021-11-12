@@ -1,18 +1,113 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Flask-Web</title>
+    <meta charset="utf-8" />
+    <title>哔哩图床</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/layui/css/layui.css">
+    <link rel="stylesheet" href="static/css/mystyle.css">
+    <script src="static/js/jquery.min.js"></script>
+    <script src="static/js/Message.js"></script>
+    <link rel="icon" href="/static/images/favicon.png" />
 </head>
 
 <body>
-    <h1>哔哩图床</h1>
-    <form action="" enctype='multipart/form-data' method='POST'>
-        <input type="file" value="选择图片" name="file" />
-        <input type="submit" value="上传" class="button-new" />
-    </form>
-    <h2>{{ERROR}}</h2>
+    <div id="left-gg"></div>
+    <div id="right-gg"></div>
+    <div class="header">
+        <div class="layui-container">
+            <div class="layui-row">
+                <div class="layui-col-lg12">
+                    <div class="layui-hide-xs menu">
+                        <ul class="layui-nav" lay-filter="">
+                            <li class="layui-nav-item"><a id="alert2"><i class="layui-icon"></i> 使用协议</a></li>
+                            <span class="layui-nav-bar"></span>
+                        </ul>
+                    </div>
+                    <div class="menu layui-hide-lg layui-hide-md layui-hide-sm">
+                        <ul class="layui-nav" lay-filter="">
+                            <li class="layui-nav-item"><a id="alert"><i class="layui-icon"></i> 使用协议</a></li>
+                            <span class="layui-nav-bar"
+                                style="left: 62.9375px; top: 55px; width: 0px; opacity: 0;"></span>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 顶部导航栏END -->
+    <div class="layui-container">
+        <div class="alert alert-warning" role="alert">
+            <span class="alert-inner--icon"><i class="layui-icon"></i></span>
+            <span class="alert-inner--text">仅支持单文件，大小限制5MB，本站图床存储于<a style="color: #00ffff;"
+                    href="https://www.bilibili.com/">Bilibili</a> <br>项目地址：<a style="color: #00ffff;"
+                    href="https://github.com/brx86/bilibili-picpool/tree/dev">https://github.com/brx86/bilibili-picpool/</a>
+            </span>
+        </div>
+        <!-- 上传区域 -->
+        <div class="layui-form">
+            <div class="layui-upload-drag" id="upimg" name="file">
+                <i class="layui-icon"></i>
+                <p>点击或拖拽上传图片</p>
+            </div>
+            <div class="layui-row">
+                <div class="layui-col-lg12" id="imgshow">
+                    <!-- 图片显示区域 -->
+                    <!-- 显示缩略图 -->
+                    <!-- <div class="layui-col-lg4">
+                        <div id="img-thumb" style="padding-top: 1em;"><img src="https:/aya1.top/"></div>
+                    </div> -->
+                    <!-- 显示地址 -->
+                    <div class="layui-col-lg7 layui-col-md-offset1">
+                        <div id="links">
+                            <table class="layui-table" lay-skin="nob" lay-size="sm">
+                                <colgroup>
+                                    <col width="100">
+                                    <col width="450">
+                                    <col>
+                                </colgroup>
+                                <tbody>
+                                    <tr>
+                                        <td>URL</td>
+                                        <td><input type="text" class="layui-input" id="url" data-cip-id="url"></td>
+                                        <td><a href="javascript:;" class="layui-btn layui-btn-sm"
+                                                onclick="copyurl('url')">复制</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>HTML</td>
+                                        <td><input type="text" class="layui-input" id="html" data-cip-id="html">
+                                        </td>
+                                        <td><a href="javascript:;" class="layui-btn layui-btn-sm"
+                                                onclick="copyurl('html')">复制</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>UBB</td>
+                                        <td><input type="text" class="layui-input" id="bbcode" data-cip-id="bbcode">
+                                        </td>
+                                        <td><a href="javascript:;" class="layui-btn layui-btn-sm"
+                                                onclick="copyurl('bbcode')">复制</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Markdown</td>
+                                        <td><input type="text" class="layui-input" id="markdown" data-cip-id="markdown">
+                                        </td>
+                                        <td><a href="javascript:;" class="layui-btn layui-btn-sm"
+                                                onclick="copyurl('markdown')">复制</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- 图片显示区域END -->
+                </div>
+            </div>
+        </div>
+        <script src="static/layui/layui.js"></script>
+        <script src="static/js/embed.js"></script>
+        <script src="static/js/clipBoard.min.js"></script>
+        <script> document.getElementById('alert').onclick = function () { alert('<ul><li>不得上传色情、暴力、政治的内容</li><li>不得上传侵犯版权、隐私权的内容</li><li>合理使用, 请勿滥用, 如有后果概不负责</li></ul>') }</script>
+        <script> document.getElementById('alert2').onclick = function () { alert('<ul><li>不得上传色情、暴力、政治的内容</li><li>不得上传侵犯版权、隐私权的内容</li><li>合理使用, 请勿滥用, 如有后果概不负责</li></ul>') }</script>
 </body>
 
 </html>

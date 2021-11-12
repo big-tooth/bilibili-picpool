@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 # Auther: Ayatale
 
-import os, cv2, time
+import os
 from datetime import timedelta
-from uploader import image_upload, b23_link
+from uploader import image_upload
 from werkzeug.utils import secure_filename
 from flask import Flask, url_for, request, redirect, render_template
 
@@ -11,7 +11,7 @@ from flask import Flask, url_for, request, redirect, render_template
 app = Flask(__name__)
 
 # 定义图片的保存路径
-base_path = os.path.join(os.path.dirname(__file__), "static")
+base_path = os.path.join(os.path.dirname(__file__), "static", "img")
 
 # 设置静态文件缓存过期时间
 app.send_file_max_age_default = timedelta(seconds=1)
@@ -45,22 +45,12 @@ def upload_web():
     if request.method == "POST":
         save_path = save_img()
         if not save_path:
-            return render_template("index.html", ERROR=ERROR)
-        # 使用opencv转换生成预览图
-        img = cv2.imread(save_path)
-        temp_path = os.path.join(base_path, "temp233.jpg")
-        cv2.imwrite(temp_path, img)
+            return render_template("index.html")
         # 上传到B站
-        result_url = image_upload(save_path, 0)
+        result_url = image_upload(save_path, 2)
         # 显示结果
-        return render_template(
-            "index_fine.html",
-            img_url=result_url["img_url"],
-            short_url=result_url["short_url"],
-            time=time.time(),
-        )
-
-    return render_template("index.html", ERROR="")
+        return {"code": "success", "data": {"url": result_url}}
+    return render_template("index.html")
 
 
 # 设置api接口
@@ -93,5 +83,10 @@ def upload_short():
     return image_upload(save_path, 2)
 
 
+@app.route("/favicon<ico>")
+def return_logo():
+    return "Null"
+
+
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=2000, debug=0, threaded=0)
+    app.run(host="0.0.0.0", port=2000, debug=1, threaded=0)

@@ -38,7 +38,7 @@ def image_upload(file_path, arg):
         short_url = b23_link(img_url)
         # 输出结果
         print(f"图片链接: {img_url}\n短网址:   {short_url}")
-        return {"img_url": img_url, "short_url": short_url}
+        return {"url": img_url, "short_url": short_url}
     elif arg == 1:
         return img_url
     elif arg == 2:
