@@ -73,6 +73,6 @@ if __name__ == "__main__":
         file_path = os.path.abspath(file_name)
         print("图片上传中...")
     else:
-        print("格式有误！上传示例图片example.png...")
-        file_path = os.path.join(os.sys.path[0], "example.png")
+        print("格式有误！上传示例图片test.png...")
+        file_path = os.path.join(os.sys.path[0], "test.png")
     image_upload(file_path, 0)
