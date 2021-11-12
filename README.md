@@ -15,11 +15,11 @@ python >= 3.6
 
 #### 第三方库:
 
-flask, opencv, requests
+flask, requests
 
 #### 使用方法:
 
-网页登陆Bilibili帐号，查看Cookie，将bili_jct和SESSDATA的值填入config.py
+网页登陆Bilibili帐号，查看Cookie，将SESSDATA的值填入config.py
 
 **使用例:**
 
