@@ -2,6 +2,7 @@
 # Auther: Ayatale
 
 import os
+from config import host, port
 from datetime import timedelta
 from uploader import image_upload
 from werkzeug.utils import secure_filename
@@ -73,4 +74,4 @@ def return_logo():
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=2000, debug=1, threaded=1)
+    app.run(host=host, port=port, debug=1, threaded=1)
