@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 # Auther: Ayatale
 
 import os
@@ -47,7 +47,7 @@ def upload_web():
         if not save_path:
             return render_template("index.html")
         # 上传到B站
-        result_url = image_upload(save_path, 2)
+        result_url = image_upload(save_path)
         # 显示结果
         return {"code": "success", "data": {"url": result_url}}
     return render_template("index.html")
@@ -64,23 +64,7 @@ def upload_full():
     if not save_path:
         return ERROR
     # 调用上传函数，返回图片链接
-    return image_upload(save_path, 0)
-
-
-@app.route("/long", methods=["POST"])
-def upload_long():
-    save_path = save_img()
-    if not save_path:
-        return ERROR
-    return image_upload(save_path, 1)
-
-
-@app.route("/short", methods=["POST"])
-def upload_short():
-    save_path = save_img()
-    if not save_path:
-        return ERROR
-    return image_upload(save_path, 2)
+    return image_upload(save_path)
 
 
 @app.route("/favicon<ico>")
@@ -89,4 +73,4 @@ def return_logo():
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=2000, debug=1, threaded=0)
+    app.run(host="0.0.0.0", port=2000, debug=1, threaded=1)

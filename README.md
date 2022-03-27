@@ -2,7 +2,7 @@
 
 ## 简介: 
 
-- 白嫖B站图片外链，可以用作图床，也可以用于在B站评论区发图
+- 使用7bu作为后端的图床
 - Demo: ~~https://pic.aya1.top~~ （可以作为网页打开，也可作为api）（服务器到期，已经无了）
 
 ## 注意事项:
@@ -15,11 +15,12 @@ python >= 3.6
 
 #### 第三方库:
 
-flask, requests
+flask, requests, werkzeug
 
 #### 使用方法:
 
-网页登陆Bilibili帐号，查看Cookie，将SESSDATA的值填入config.py
+根据文档获取token
+https://7bu.top/index/api.html
 
 **使用例:**
 
@@ -27,11 +28,8 @@ flask, requests
 
 ```bash
 ❯ python uploader.py test.png
-图片上传中...
-图片链接: http://i0.hdslb.com/bfs/album/cefaa6a1e3a5f8674f36192dc5f9251dca620540.png
-短网址:   https://b23.tv/CqfmCz
+https://bu.dusays.com/2022/03/27/4ded92e8bc041.png
 ```
-
 
 
 2. 在当前文件夹执行`python app.py`运行flask接口，然后使用post上传图片，获得图片地址
@@ -40,17 +38,8 @@ flask, requests
 # shell命令
 # 可以在 ~/.zshrc 里自定义函数实现快捷上传 bpic(){curl -F "file=@$1" https://pic.aya1.top/short}
 
-❯ curl -F "file=@test.png" http://127.0.0.1:2000/short
-https://b23.tv/pb3KZo
-
-❯ curl -F "file=@test.png" http://127.0.0.1:2000/long
-http://i0.hdslb.com/bfs/album/cefaa6a1e3a5f8674f36192dc5f9251dca620540.png
-
-❯ curl -F "file=@test.png" http://127.0.0.1:2000     
-{
-  "img_url": "http://i0.hdslb.com/bfs/album/cefaa6a1e3a5f8674f36192dc5f9251dca620540.png", 
-  "short_url": "https://b23.tv/AKwXcE"
-}
+❯ curl http://127.0.0.1:2000 -F "file=@test.png" 
+https://bu.dusays.com/2022/03/27/86d37347fc80e.png
 ```
 
 ```python
@@ -65,10 +54,7 @@ response = requests.post(
 print(response.text)
 
 # 运行结果
-{
-  "img_url": "http://i0.hdslb.com/bfs/album/cefaa6a1e3a5f8674f36192dc5f9251dca620540.png", 
-  "short_url": "https://b23.tv/AKwXcE"
-}
+https://bu.dusays.com/2022/03/27/86d37347fc80e.png
 
 ```
 
